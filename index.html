@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Nikola Tesla | AcknowledgeTheGenius</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* GENEL TASARIM - WIKIPEDIA HAVASI */
+        body { font-family: 'Open Sans', sans-serif; margin: 0; background-color: #f6f6f6; color: #202122; }
+        .header { background: #fff; border-bottom: 1px solid #a2a9b1; padding: 10px 40px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Libre Baskerville', serif; font-size: 1.5em; font-weight: bold; }
+        .logo span { color: #3366cc; }
+        
+        .main-container { display: flex; max-width: 1000px; margin: 20px auto; background: white; padding: 30px; border: 1px solid #a2a9b1; }
+        .text-content { flex: 2; padding-right: 30px; line-height: 1.6; }
+        h1 { font-family: 'Libre Baskerville', serif; border-bottom: 1px solid #a2a9b1; padding-bottom: 5px; }
+        
+        .infobox { flex: 1; border: 1px solid #a2a9b1; background: #f8f9fa; padding: 10px; font-size: 0.9em; height: fit-content; }
+        .infobox img { width: 100%; height: auto; }
+        .infobox table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        .infobox th { background: #cedff2; padding: 5px; text-align: left; }
+        .infobox td { padding: 5px; border-bottom: 1px solid #f0f0f0; }
+
+        /* COOKIE POPUP - TUZAK BURADA */
+        #cookie-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: #fff; border-top: 3px solid #3366cc; padding: 20px; box-sizing: border-box; display: flex; justify-content: center; align-items: center; gap: 20px; box-shadow: 0 -5px 15px rgba(0,0,0,0.1); z-index: 100; }
+        .btn { padding: 10px 25px; cursor: pointer; font-weight: bold; border: 1px solid #a2a9b1; border-radius: 2px; }
+        .accept-btn { background: #3366cc; color: white; border: none; }
+        .reject-btn { background: #f8f9fa; color: #202122; }
+
+        /* JUMPSCARE EKRANI */
+        #scary-overlay { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: black; z-index: 9999; justify-content: center; align-items: center; }
+        #scary-overlay img { width: 100%; height: 100%; object-fit: cover; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="logo">Acknowledge<span>The</span>Genius</div>
+    <div style="color:#777">Oturum açılmadı</div>
+</div>
+
+<div class="main-container">
+    <div class="text-content">
+        <h1>Nikola Tesla</h1>
+        <p><b>Nikola Tesla</b> (10 Temmuz 1856 - 7 Ocak 1943), modern alternatif akım (AC) elektrik güç sisteminin tasarımına katkılarıyla tanınan mucit ve mühendistir.</p>
+        
+        <h3>Buluşları ve Çalışmaları</h3>
+        <p>Tesla, kablosuz iletişim, radyo ve yüksek gerilim üzerine yaptığı çalışmalarla dünyayı değiştirmiştir. Wardenclyffe Kulesi ile dünyaya bedava enerji yaymayı hedeflemiştir.</p>
+        
+        <div style="background:#eaf3ff; border:1px solid #3366cc; padding:15px; margin-top:20px; text-align:center;">
+            <strong>Arşiv Dosyası:</strong> Tesla_Patent_Listesi.pdf (14.2 MB)<br><br>
+            <button style="cursor:not-allowed;">Dosyayı İndir</button>
+        </div>
+    </div>
+
+    <div class="infobox">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/79/Tesla_circa_1890.jpg" alt="Tesla">
+        <table>
+            <tr><th colspan="2">Nikola Tesla</th></tr>
+            <tr><td>Doğum</td><td>1856, Smiljan</td></tr>
+            <tr><td>Ölüm</td><td>1943, New York</td></tr>
+            <tr><td>Dalı</td><td>Fizik, Elektrik</td></tr>
+        </table>
+    </div>
+</div>
+
+<!-- SAHTE ÇEREZ ÇUBUĞU -->
+<div id="cookie-bar">
+    <span>Bu web sitesi deneyiminizi geliştirmek için çerezleri kullanır. Devam etmek için onaylayın.</span>
+    <button class="btn accept-btn" onclick="document.getElementById('cookie-bar').style.display='none'">Kabul Et</button>
+    <button class="btn reject-btn" onclick="startScare()">Reddet</button>
+</div>
+
+<!-- KORKU EKRANI -->
+<div id="scary-overlay">
+    <img src="https://i.imgur.com/uG9XJmI.jpg" id="scary-img">
+    <audio id="scream-audio" src="https://www.soundboard.com/handler/Downloadaudio.ashx?id=381395"></audio>
+</div>
+
+<script>
+    function startScare() {
+        var overlay = document.getElementById('scary-overlay');
+        var audio = document.getElementById('scream-audio');
+        
+        overlay.style.display = 'flex';
+        audio.play().catch(function(e) { console.log("Ses hatası: Kullanıcı etkileşimi lazım."); });
+
+        // 2 saniye sonra her şeyi kapat ve mesaj ver
+        setTimeout(function() {
+            overlay.innerHTML = "<h1 style='color:white; font-family:serif;'>DEHAYI REDDEDEMEZSİN.</h1>";
+            setTimeout(function() { location.reload(); }, 2000);
+        }, 1500);
+    }
+</script>
+
+</body>
+</html>
